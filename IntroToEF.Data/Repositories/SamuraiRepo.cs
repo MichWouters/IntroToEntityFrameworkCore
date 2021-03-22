@@ -6,10 +6,33 @@ namespace IntroToEF.Data.Repositories
 {
     public class SamuraiRepo : ISamuraiRepo
     {
+        private SamuraiContext context;
+
+        public SamuraiRepo()
+        {
+            // Open connection to database
+            context = new SamuraiContext();
+        }
+
         public void AddSamurai(string name)
         {
-            // Create an object to be INSERTED
+            // Create a single object to be inserted
+            var samurai = new Samurai
+            {
+                Name = name
+            };
 
+            // Add object(s) to be tracked by context
+            // Specify target table and data to be added
+            context.Samurais.Add(samurai);
+
+            // Push changes to DB
+            context.SaveChanges();
+        }
+
+        public void AddSamurais(List<Samurai> samurais)
+        {
+            // Create a list of objects to be INSERTED
             List<Samurai> myList = new List<Samurai>
             {
                 new Samurai
@@ -26,21 +49,12 @@ namespace IntroToEF.Data.Repositories
                 },
             };
 
-            // Open connection to database
-            var context = new SamuraiContext();
-
             // Add object(s) to be tracked by context
             // Specify target table and data to be added
-
             context.Samurais.AddRange(myList);
 
             // Push changes to DB
             context.SaveChanges();
-        }
-
-        public void AddSamurais(List<Samurai> samurais)
-        {
-            throw new NotImplementedException();
         }
 
         public Samurai GetSamurai(int id)
@@ -65,15 +79,14 @@ namespace IntroToEF.Data.Repositories
 
         public void AddDifferentObjectsToContext()
         {
-            var context = new SamuraiContext();
-
-            Quote quote = new Quote
+            // Objects can be inserted in multiple tables in one statement
+            var quote = new Quote
             {
                 SamuraiId = 1,
                 Text = "If the Bird does not sing, Kill it."
             };
 
-            Horse horse = new Horse
+            var horse = new Horse
             {
                 SamuraiId = 1,
                 Age = 5,
