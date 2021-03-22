@@ -3,48 +3,22 @@ using IntroToEF.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IntroToEF.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    partial class SamuraiContextModelSnapshot : ModelSnapshot
+    [Migration("20210322105917_annotations")]
+    partial class annotations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("IntroToEF.Data.Entities.Horse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsWarHorse")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("SamuraiId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SamuraiId");
-
-                    b.ToTable("Horses");
-                });
 
             modelBuilder.Entity("IntroToEF.Data.Entities.Quote", b =>
                 {
@@ -89,17 +63,6 @@ namespace IntroToEF.Data.Migrations
                     b.ToTable("Samurais");
                 });
 
-            modelBuilder.Entity("IntroToEF.Data.Entities.Horse", b =>
-                {
-                    b.HasOne("IntroToEF.Data.Entities.Samurai", "Samurai")
-                        .WithMany("Horses")
-                        .HasForeignKey("SamuraiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Samurai");
-                });
-
             modelBuilder.Entity("IntroToEF.Data.Entities.Quote", b =>
                 {
                     b.HasOne("IntroToEF.Data.Entities.Samurai", "Samurai")
@@ -113,8 +76,6 @@ namespace IntroToEF.Data.Migrations
 
             modelBuilder.Entity("IntroToEF.Data.Entities.Samurai", b =>
                 {
-                    b.Navigation("Horses");
-
                     b.Navigation("Quotes");
                 });
 #pragma warning restore 612, 618
