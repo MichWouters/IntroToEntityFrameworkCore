@@ -3,5 +3,7 @@
     public interface ISamuraiRepo
     {
         void AddSamurai(string name);
+
+        void AddDifferentObjectsToContext();
     }
 }

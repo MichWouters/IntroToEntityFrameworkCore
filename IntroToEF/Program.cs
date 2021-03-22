@@ -7,10 +7,10 @@ namespace IntroToEF
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello. Please enter a samurai");
-            string name = Console.ReadLine();
+            Business business = new Business();
+            business.RunApp();
 
-            SamuraiRepo repo = new SamuraiRepo();
+
         }
     }
 }
