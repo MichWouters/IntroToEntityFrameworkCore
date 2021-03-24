@@ -67,11 +67,58 @@ namespace IntroToEF.Data.Repositories
 
         public Samurai GetSamurai(int id)
         {
-            throw new NotImplementedException();
+            // Find a single object in a table by id
+            var samurai = context.Samurais.Find(id);
+
+            return samurai;
+        }
+
+        public Samurai GetSamuraiByName(string name)
+        {
+            // Find a single object in a table by id
+            var samurai =
+                context.Samurais
+                .FirstOrDefault(x => x.Name == name);
+
+            return samurai;
+        }
+
+        public List<Samurai> GetSamuraisByName(string name)
+        {
+            // Find a single object in a table by id
+            var samurai =
+                context.Samurais
+                .Include(x => x.Quotes)
+                .Where(x => x.Name == name)
+                .ToList();
+
+            return samurai;
+        }
+
+        public List<Samurai> GetSamuraiWhereNameContains(string text)
+        {
+            var samurai = context.Samurais
+                .Where(x => x.Name.Contains(text))
+                .OrderByDescending(x => x.Name)
+                .ToList();
+
+            return samurai;
+        }
+
+        public Samurai GetSamuraiWithIncludedData(int id)
+        {
+            // Using a find(id) does the exact same thing as below
+            var samurai = context.Samurais
+                .Include(x => x.Horses)
+                .Include(x => x.Quotes.Where (y => y.Text.Contains("thank")))
+                .FirstOrDefault(x => x.Id == id);
+
+            return samurai;
         }
 
         public List<Samurai> GetSamurais()
         {
+            // Include data in related tables
             return context.Samurais
                 .Include(x => x.Quotes)
                 .Include(x => x.Horses)
@@ -108,6 +155,11 @@ namespace IntroToEF.Data.Repositories
             context.Add(quote);
             context.Add(horse);
             context.SaveChanges();
+        }
+
+        Samurai ISamuraiRepo.GetSamuraiWhereNameContains(string text)
+        {
+            throw new NotImplementedException();
         }
     }
 }

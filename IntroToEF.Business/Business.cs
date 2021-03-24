@@ -25,7 +25,13 @@ namespace IntroToEF.Business
 
             //AddSamuraiWithQuotes();
 
-            GetAllSamurais();
+            //GetAllSamurais();
+
+            var samurai = _repo.GetSamurai(9);
+
+            var samurai2 = _repo.GetSamuraiWithIncludedData(9);
+
+            //var samurai = _repo.GetSamuraiWhereNameContains("listsam");
         }
 
         public void AddSamuraiWithQuotes()

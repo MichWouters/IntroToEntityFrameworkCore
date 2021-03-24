@@ -11,7 +11,10 @@ namespace IntroToEF.Data.Repositories
         void AddSamurais(List<Samurai> samurais);
         void DeleteSamurai(int id);
         Samurai GetSamurai(int id);
+        Samurai GetSamuraiWithIncludedData(int id);
         List<Samurai> GetSamurais();
         void UpdateSamurai(int id, Samurai samurai);
+        Samurai GetSamuraiWhereNameContains(string text);
+
     }
 }
