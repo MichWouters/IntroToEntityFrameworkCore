@@ -1,6 +1,8 @@
 ﻿using IntroToEF.Data.Entities;
 using System.Collections.Generic;
 using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace IntroToEF.Data.Repositories
 {
@@ -27,6 +29,12 @@ namespace IntroToEF.Data.Repositories
             context.Samurais.Add(samurai);
 
             // Push changes to DB
+            context.SaveChanges();
+        }
+
+        public void AddSamurai(Samurai samurai)
+        {
+            context.Samurais.Add(samurai);
             context.SaveChanges();
         }
 
@@ -64,7 +72,10 @@ namespace IntroToEF.Data.Repositories
 
         public List<Samurai> GetSamurais()
         {
-            throw new NotImplementedException();
+            return context.Samurais
+                .Include(x => x.Quotes)
+                .Include(x => x.Horses)
+                .ToList();
         }
 
         public void UpdateSamurai(int id, Samurai samurai)
