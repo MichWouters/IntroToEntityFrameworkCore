@@ -1,5 +1,6 @@
 ﻿using IntroToEF.Data.Repositories;
 using System;
+using IntroToEF.Business;
 
 namespace IntroToEF
 {
@@ -7,10 +8,8 @@ namespace IntroToEF
     {
         private static void Main(string[] args)
         {
-            Business business = new Business();
+            var business = new Business.Business();
             business.RunApp();
-
-
         }
     }
 }

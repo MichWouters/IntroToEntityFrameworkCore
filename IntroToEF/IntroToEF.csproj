@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IntroToEF.Data\IntroToEF.Data.csproj" />
+    <ProjectReference Include="..\IntroToEF.Business\IntroToEF.Business.csproj" />
   </ItemGroup>
 
 </Project>
