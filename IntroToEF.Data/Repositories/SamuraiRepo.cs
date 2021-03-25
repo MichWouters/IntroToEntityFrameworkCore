@@ -34,7 +34,7 @@ namespace IntroToEF.Data.Repositories
 
         public void AddSamurai(Samurai samurai)
         {
-            context.Samurais.Add(samurai);
+            context.Add(samurai);
             context.SaveChanges();
         }
 
@@ -125,14 +125,41 @@ namespace IntroToEF.Data.Repositories
                 .ToList();
         }
 
-        public void UpdateSamurai(int id, Samurai samurai)
+        public void UpdateSamurai(Samurai samurai)
         {
-            throw new NotImplementedException();
+            context.SaveChanges();
+        }
+
+        public void UpdateSamurais()
+        {
+            // Get samurais -> Skip the first four rows, then take three
+            List<Samurai> samurais = context.Samurais
+                .Skip(1)
+                .Take(6)
+                .ToList();
+
+            int i = 0;
+            foreach (var samurai in samurais)
+            {
+                i++;
+                samurai.Name = "I was changed in DB " + i;
+                samurai.Dynasty = "Sengoku";
+            }
+
+            context.SaveChanges();
+        }
+
+        public void GetSamuraiWithSql()
+        {
+            string sql = @"SELECT * FROM USers Where UserId = @id";
+
         }
 
         public void DeleteSamurai(int id)
         {
-            throw new NotImplementedException();
+            Samurai samurai = GetSamurai(id);
+            context.Samurais.Remove(samurai);
+            context.SaveChanges();
         }
 
         public void AddDifferentObjectsToContext()

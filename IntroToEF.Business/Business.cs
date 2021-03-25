@@ -16,39 +16,33 @@ namespace IntroToEF.Business
 
         public void RunApp()
         {
-            //    Console.WriteLine("Hello. Please enter a samurai");
-            //    string name = Console.ReadLine();
-
-            //    _repo.AddSamurai(name);
-
-            //_repo.AddDifferentObjectsToContext();
-
-            //AddSamuraiWithQuotes();
-
-            //GetAllSamurais();
-
-            var samurai = _repo.GetSamurai(9);
-
-            var samurai2 = _repo.GetSamuraiWithIncludedData(9);
-
-            //var samurai = _repo.GetSamuraiWhereNameContains("listsam");
+            //RenameSamurai(9, "I was changed from the app");
+            //RenameMultipleSamurais();
+            RemoveSamurai(10);
         }
 
-        public void AddSamuraiWithQuotes()
+        public void RemoveSamurai(int id)
+        {
+            _repo.DeleteSamurai(id);
+        }
+
+        public void AddSamuraiWithHorses()
         {
             var samurai = new Samurai
             {
-                Name = "QuotedSamurai",
+                Name = "Samurai With Horses",
                 Dynasty = "Sengoku",
-                Quotes = new List<Quote>
+                Horses = new List<Horse>
                 {
-                    new Quote
+                    new Horse
                     {
-                        Text = "I have saved your life. Now will you feed me?"
+                        IsWarHorse = true,
+                        Name = "Roach"
                     },
-                    new Quote
+                    new Horse
                     {
-                        Text = "Thank you for feeding me"
+                        IsWarHorse = false,
+                        Name = "Boeddika"
                     }
                 }
             };
@@ -56,10 +50,27 @@ namespace IntroToEF.Business
             _repo.AddSamurai(samurai);
         }
 
-
         public void GetAllSamurais()
         {
             var samurais = _repo.GetSamurais();
+        }
+
+        public void RenameSamurai(int id, string name)
+        {
+            // Get element from DB
+            Samurai samuraiToBeUpdated = _repo.GetSamurai(id);
+
+            // Perform changes
+            samuraiToBeUpdated.Name = name;
+
+            // Save object back to db
+            _repo.UpdateSamurai(samuraiToBeUpdated);
+        }
+
+        public void RenameMultipleSamurais()
+        {
+            // Bad practice -> Code in datalayer should go here.
+            _repo.UpdateSamurais();
         }
     }
 }
