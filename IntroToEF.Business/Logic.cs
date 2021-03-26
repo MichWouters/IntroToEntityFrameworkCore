@@ -1,17 +1,26 @@
 ﻿using IntroToEF.Data.Entities;
 using IntroToEF.Data.Repositories;
+using System;
 using System.Collections.Generic;
 
 namespace IntroToEF.Business
 {
-    public class Business
+    public class Logic
     {
         // Composition
         private ISamuraiRepo _repo;
 
-        public Business()
+        public Logic()
         {
             _repo = new SamuraiRepo();
+        }
+
+        public void ToBeImplemented(string what)
+
+        {
+            Console.WriteLine($"{what} is yet to be implemented! \nPress any key to go back");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         public void RunApp()
@@ -22,12 +31,12 @@ namespace IntroToEF.Business
 
             //AddSamuraiWhoFoughtInBattles();
             //var sam = GetSamuraiWithBattles(12);
-            var SPResult = GetSamuraiWhoSaidAWord("thank");
+            //var SPResult = GetSamuraiWhoSaidAWord("thank");
         }
 
         public List<Samurai> GetSamuraiWhoSaidAWord(string word)
         {
-           var result = _repo.GetResultFromStoredProcedure(word);
+            var result = _repo.GetResultFromStoredProcedure(word);
             return result;
         }
 
