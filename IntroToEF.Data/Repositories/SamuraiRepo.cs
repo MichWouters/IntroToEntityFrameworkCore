@@ -181,5 +181,14 @@ namespace IntroToEF.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public List<Samurai> GetResultFromStoredProcedure(string text)
+        {
+            var samurais = context.Samurais.FromSqlRaw(
+                "EXEC [dbo].[SamuraisWhoSaidAWord] {0}", text)
+                .ToList();
+
+            return samurais;
+        }
     }
 }

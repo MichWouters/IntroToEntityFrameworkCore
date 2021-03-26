@@ -21,7 +21,14 @@ namespace IntroToEF.Business
             //RemoveSamurai(10);
 
             //AddSamuraiWhoFoughtInBattles();
-            var sam = GetSamuraiWithBattles(12);
+            //var sam = GetSamuraiWithBattles(12);
+            var SPResult = GetSamuraiWhoSaidAWord("thank");
+        }
+
+        public List<Samurai> GetSamuraiWhoSaidAWord(string word)
+        {
+           var result = _repo.GetResultFromStoredProcedure(word);
+            return result;
         }
 
         public void RemoveSamurai(int id)

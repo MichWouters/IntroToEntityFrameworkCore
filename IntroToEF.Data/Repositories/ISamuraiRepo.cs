@@ -16,5 +16,6 @@ namespace IntroToEF.Data.Repositories
         void UpdateSamurai(Samurai samurai);
         void UpdateSamurais();
         Samurai GetSamuraiWhereNameContains(string text);
+        List<Samurai> GetResultFromStoredProcedure(string text);
     }
 }
