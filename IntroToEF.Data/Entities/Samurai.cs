@@ -18,5 +18,7 @@ namespace IntroToEF.Data.Entities
         public List<Quote> Quotes { get; set; } = new List<Quote>();
 
         public List<Horse> Horses { get; set; } = new List<Horse>();
+
+        public List<Battle> Battles { get; set; } = new List<Battle>();
     }
 }

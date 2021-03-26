@@ -40,35 +40,28 @@ namespace IntroToEF.Data.Repositories
 
         public void AddSamurais(List<Samurai> samurais)
         {
-            // Create a list of objects to be INSERTED
-            List<Samurai> myList = new List<Samurai>
-            {
-                new Samurai
-                {
-                    Name = "ListSam1"
-                },
-                 new Samurai
-                {
-                    Name = "ListSam2"
-                },
-                new Samurai
-                {
-                    Name = "ListSam3"
-                },
-            };
-
-            // Add object(s) to be tracked by context
-            // Specify target table and data to be added
-            context.Samurais.AddRange(myList);
-
-            // Push changes to DB
+            context.AddRange(samurais);
             context.SaveChanges();
         }
 
-        public Samurai GetSamurai(int id)
+        public Samurai GetSamurai(int id, bool fetchAllRelatedData = false)
         {
-            // Find a single object in a table by id
-            var samurai = context.Samurais.Find(id);
+            Samurai samurai = null;
+
+            if (fetchAllRelatedData)
+            {
+                // Include all related data in query using LEFT OUTER JOINS.
+                samurai = context.Samurais
+                    .Include(x => x.Horses)
+                    .Include(x => x.Quotes)
+                    .Include(x => x.Battles)
+                    .FirstOrDefault(x => x.Id == id);
+            }
+            else
+            {
+                // Find a single object in a table by id -> No related data
+                 samurai = context.Samurais.Find(id);
+            }
 
             return samurai;
         }

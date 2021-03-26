@@ -18,7 +18,10 @@ namespace IntroToEF.Business
         {
             //RenameSamurai(9, "I was changed from the app");
             //RenameMultipleSamurais();
-            RemoveSamurai(10);
+            //RemoveSamurai(10);
+
+            //AddSamuraiWhoFoughtInBattles();
+            var sam = GetSamuraiWithBattles(12);
         }
 
         public void RemoveSamurai(int id)
@@ -50,6 +53,29 @@ namespace IntroToEF.Business
             _repo.AddSamurai(samurai);
         }
 
+        public void AddSamuraiWhoFoughtInBattles()
+        {
+            Samurai veteran = new Samurai
+            {
+                Name = "A weary broken man",
+                Battles = new List<Battle>
+                {
+                    new Battle
+                    {
+                        Name = "Okinagawa",
+                        Year = 1557
+                    },
+                    new Battle
+                    {
+                        Name = "Fukushima",
+                        Year = 2011
+                    }
+                }
+            };
+
+            _repo.AddSamurai(veteran);
+        }
+
         public void GetAllSamurais()
         {
             var samurais = _repo.GetSamurais();
@@ -71,6 +97,11 @@ namespace IntroToEF.Business
         {
             // Bad practice -> Code in datalayer should go here.
             _repo.UpdateSamurais();
+        }
+
+        public Samurai GetSamuraiWithBattles(int id)
+        {
+            return _repo.GetSamurai(id, true);
         }
     }
 }
