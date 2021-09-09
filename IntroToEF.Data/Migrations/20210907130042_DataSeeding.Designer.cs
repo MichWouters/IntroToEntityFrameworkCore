@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IntroToEF.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    [Migration("20210326092828_AlterSP")]
-    partial class AlterSP
+    [Migration("20210907130042_DataSeeding")]
+    partial class DataSeeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -107,6 +107,74 @@ namespace IntroToEF.Data.Migrations
                     b.HasIndex("SamuraiId");
 
                     b.ToTable("Quotes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            SamuraiId = 1,
+                            Text = "Summer grasses, All that remains of soldiers' dreams"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            SamuraiId = 1,
+                            Text = "New eras don't come about because of swords, they're created by the people who wield them"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            SamuraiId = 2,
+                            Text = "A man who can't uphold his beliefs is pathetic dead or alive"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            SamuraiId = 2,
+                            Text = "I dreamt of worldly success once"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            SamuraiId = 5,
+                            Text = "Rehearse your death every morning and night. Only when you constantly live as though already a corpse will you be able to find freedom in the martial Way, and fulfill your duties without fault throughout your life"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            SamuraiId = 5,
+                            Text = "The Way of the warrior (bushido) is to be found in dying."
+                        },
+                        new
+                        {
+                            Id = 7,
+                            SamuraiId = 7,
+                            Text = "It is the genius of life that demands of those who partake in it that they are not only the guardians of what was and is, but what will be"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            SamuraiId = 1,
+                            Text = "Bushido is realized in the presence of death. This means choosing death whenever there is a choice between life and death. There is no other reasoning"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            SamuraiId = 7,
+                            Text = "It is the genius of life that demands of those who partake in it that they are not only are guardians of what was and is, but what will be"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            SamuraiId = 10,
+                            Text = "The katana has been the weapon of the samurai since time immemorial. Consider the inner meaning"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            SamuraiId = 12,
+                            Text = "No matter how much you hate or how much you suffer, you can't bring the dead back to life"
+                        });
                 });
 
             modelBuilder.Entity("IntroToEF.Data.Entities.Samurai", b =>
@@ -128,6 +196,80 @@ namespace IntroToEF.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Samurais");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Dynasty = "Asuka",
+                            Name = "Abe Masakatsu"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Dynasty = "Kamakura",
+                            Name = "Baba Nobufusa"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Dynasty = "Kamakura",
+                            Name = "Chosokabe Nobuchika"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Dynasty = "Edo",
+                            Name = "Date Masamune"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Dynasty = "Meiji",
+                            Name = "Eto Shinpei"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Dynasty = "Meiji",
+                            Name = "Fuma Kotaro"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Dynasty = "Edo",
+                            Name = "Gamo Ujisato"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Dynasty = "Asuka",
+                            Name = "Harada Nobutane"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Dynasty = "Meiji",
+                            Name = "Ii Naomasa"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Dynasty = "Edo",
+                            Name = "Kido Takayoshi"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Dynasty = "Edo",
+                            Name = "Maeda Toshiie"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Dynasty = "Kamakura",
+                            Name = "Mori Okimoto"
+                        });
                 });
 
             modelBuilder.Entity("BattleSamurai", b =>
