@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntroToEF.Data.Repositories
+namespace IntroToEF.Business
 {
-    public class ExercisesRepo
+    class SetExercises
     {
-        public void GetAllSamurai()
-        {
-
-        }
     }
 }

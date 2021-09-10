@@ -69,12 +69,12 @@ namespace IntroToEF.Business
                 {
                     new Battle
                     {
-                        Name = "Okinagawa",
+                        Name = "Okinawa",
                         Year = 1557
                     },
                     new Battle
                     {
-                        Name = "Fukushima",
+                        Name = "Kagoshima",
                         Year = 2011
                     }
                 }
@@ -85,7 +85,7 @@ namespace IntroToEF.Business
 
         public void GetAllSamurais()
         {
-            var samurais = _repo.GetSamurais();
+            var samurais = _repo.GetAllSamurai();
         }
 
         public void RenameSamurai(int id, string name)
@@ -108,7 +108,7 @@ namespace IntroToEF.Business
 
         public Samurai GetSamuraiWithBattles(int id)
         {
-            return _repo.GetSamurai(id, true);
+            return _repo.GetSamurai(id);
         }
     }
 }

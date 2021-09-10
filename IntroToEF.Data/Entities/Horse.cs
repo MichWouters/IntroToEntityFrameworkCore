@@ -5,6 +5,7 @@ namespace IntroToEF.Data.Entities
 {
     public class Horse
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]

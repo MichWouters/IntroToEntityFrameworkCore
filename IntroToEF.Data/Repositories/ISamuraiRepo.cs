@@ -5,17 +5,30 @@ namespace IntroToEF.Data.Repositories
 {
     public interface ISamuraiRepo
     {
-        void AddDifferentObjectsToContext();
         void AddSamurai(Samurai samurai);
-        void AddSamurai(string name);
+
         void AddSamurais(List<Samurai> samurais);
+
         void DeleteSamurai(int id);
-        Samurai GetSamurai(int id, bool fetchAllRelatedData = false);
-        Samurai GetSamuraiWithIncludedData(int id);
-        List<Samurai> GetSamurais();
-        void UpdateSamurai(Samurai samurai);
-        void UpdateSamurais();
-        Samurai GetSamuraiWhereNameContains(string text);
+
+        List<Samurai> FindSamuraisThatSaidAWord(string word);
+
+        List<Samurai> GetAllSamurai();
+
         List<Samurai> GetResultFromStoredProcedure(string text);
+
+        Samurai GetSamurai(int id);
+
+        Samurai GetSamuraiByName(string name);
+
+        List<Samurai> GetSamuraisByName(string name);
+
+        List<Samurai> GetSamuraiWhereNameContains(string text);
+
+        Samurai GetSamuraiWithAllRelatedData(int id);
+
+        void UpdateSamurai(Samurai samurai);
+
+        void UpdateSamurais();
     }
 }
