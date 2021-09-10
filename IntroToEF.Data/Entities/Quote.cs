@@ -15,6 +15,7 @@ namespace IntroToEF.Data.Entities
 
         // If we respect the naming [ClassName]Id, then EF will be 
         // smart enough to know that this is a Foreign Key
+        [Required]
         public int SamuraiId { get; set; }
     }
 }

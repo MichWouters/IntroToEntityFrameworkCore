@@ -83,6 +83,72 @@ namespace IntroToEF.Data.Migrations
                     b.HasIndex("SamuraiId");
 
                     b.ToTable("Horses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 12,
+                            IsWarHorse = false,
+                            Name = "Barnaby",
+                            SamuraiId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Age = 5,
+                            IsWarHorse = false,
+                            Name = "Lacey",
+                            SamuraiId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Age = 5,
+                            IsWarHorse = true,
+                            Name = "Boeddika",
+                            SamuraiId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Age = 7,
+                            IsWarHorse = false,
+                            Name = "Lucky",
+                            SamuraiId = 6
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Age = 5,
+                            IsWarHorse = false,
+                            Name = "Little Joe",
+                            SamuraiId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Age = 7,
+                            IsWarHorse = false,
+                            Name = "Misty",
+                            SamuraiId = 11
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Age = 5,
+                            IsWarHorse = false,
+                            Name = "Rembrandt",
+                            SamuraiId = 11
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Age = 13,
+                            IsWarHorse = true,
+                            Name = "Traveler",
+                            SamuraiId = 11
+                        });
                 });
 
             modelBuilder.Entity("IntroToEF.Data.Entities.Quote", b =>
@@ -170,6 +236,12 @@ namespace IntroToEF.Data.Migrations
                         new
                         {
                             Id = 11,
+                            SamuraiId = 5,
+                            Text = "Death is just another journey"
+                        },
+                        new
+                        {
+                            Id = 12,
                             SamuraiId = 12,
                             Text = "No matter how much you hate or how much you suffer, you can't bring the dead back to life"
                         });

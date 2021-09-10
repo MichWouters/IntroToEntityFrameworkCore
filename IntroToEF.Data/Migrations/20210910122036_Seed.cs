@@ -2,7 +2,7 @@
 
 namespace IntroToEF.Data.Migrations
 {
-    public partial class DataSeeding : Migration
+    public partial class Seed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -121,21 +121,37 @@ namespace IntroToEF.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Horses",
+                columns: new[] { "Id", "Age", "IsWarHorse", "Name", "SamuraiId" },
+                values: new object[,]
+                {
+                    { 1, 12, false, "Barnaby", 1 },
+                    { 2, 5, false, "Lacey", 1 },
+                    { 3, 5, true, "Boeddika", 1 },
+                    { 8, 5, false, "Rembrandt", 11 },
+                    { 7, 7, false, "Misty", 11 },
+                    { 5, 5, false, "Little Joe", 6 },
+                    { 9, 13, true, "Traveler", 11 },
+                    { 4, 7, false, "Lucky", 6 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Quotes",
                 columns: new[] { "Id", "SamuraiId", "Text" },
                 values: new object[,]
                 {
-                    { 1, 1, "Summer grasses, All that remains of soldiers' dreams" },
-                    { 2, 1, "New eras don't come about because of swords, they're created by the people who wield them" },
-                    { 8, 1, "Bushido is realized in the presence of death. This means choosing death whenever there is a choice between life and death. There is no other reasoning" },
-                    { 3, 2, "A man who can't uphold his beliefs is pathetic dead or alive" },
-                    { 4, 2, "I dreamt of worldly success once" },
-                    { 5, 5, "Rehearse your death every morning and night. Only when you constantly live as though already a corpse will you be able to find freedom in the martial Way, and fulfill your duties without fault throughout your life" },
-                    { 6, 5, "The Way of the warrior (bushido) is to be found in dying." },
-                    { 7, 7, "It is the genius of life that demands of those who partake in it that they are not only the guardians of what was and is, but what will be" },
-                    { 9, 7, "It is the genius of life that demands of those who partake in it that they are not only are guardians of what was and is, but what will be" },
                     { 10, 10, "The katana has been the weapon of the samurai since time immemorial. Consider the inner meaning" },
-                    { 11, 12, "No matter how much you hate or how much you suffer, you can't bring the dead back to life" }
+                    { 9, 7, "It is the genius of life that demands of those who partake in it that they are not only are guardians of what was and is, but what will be" },
+                    { 7, 7, "It is the genius of life that demands of those who partake in it that they are not only the guardians of what was and is, but what will be" },
+                    { 6, 5, "The Way of the warrior (bushido) is to be found in dying." },
+                    { 5, 5, "Rehearse your death every morning and night. Only when you constantly live as though already a corpse will you be able to find freedom in the martial Way, and fulfill your duties without fault throughout your life" },
+                    { 4, 2, "I dreamt of worldly success once" },
+                    { 3, 2, "A man who can't uphold his beliefs is pathetic dead or alive" },
+                    { 8, 1, "Bushido is realized in the presence of death. This means choosing death whenever there is a choice between life and death. There is no other reasoning" },
+                    { 2, 1, "New eras don't come about because of swords, they're created by the people who wield them" },
+                    { 1, 1, "Summer grasses, All that remains of soldiers' dreams" },
+                    { 11, 5, "Death is just another journey" },
+                    { 12, 12, "No matter how much you hate or how much you suffer, you can't bring the dead back to life" }
                 });
 
             migrationBuilder.CreateIndex(

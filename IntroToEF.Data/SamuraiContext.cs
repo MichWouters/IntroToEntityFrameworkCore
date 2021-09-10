@@ -1,6 +1,6 @@
-﻿using IntroToEF.Data.Entities;
+﻿using System;
+using IntroToEF.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace IntroToEF.Data
 {
@@ -9,6 +9,7 @@ namespace IntroToEF.Data
     {
         // Each entity that needs a table needs to be defined here
         public DbSet<Quote> Quotes { get; set; }
+
         public DbSet<Samurai> Samurais { get; set; }
         public DbSet<Horse> Horses { get; set; }
         public DbSet<Battle> Battles { get; set; }
@@ -19,7 +20,7 @@ namespace IntroToEF.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(CONNECTION);
-              //  .LogTo(Console.WriteLine);
+            //.LogTo(Console.WriteLine);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -49,7 +50,18 @@ namespace IntroToEF.Data
                 new Quote { Id = 8, SamuraiId = 1, Text = "Bushido is realized in the presence of death. This means choosing death whenever there is a choice between life and death. There is no other reasoning" },
                 new Quote { Id = 9, SamuraiId = 7, Text = "It is the genius of life that demands of those who partake in it that they are not only are guardians of what was and is, but what will be" },
                 new Quote { Id = 10, SamuraiId = 10, Text = "The katana has been the weapon of the samurai since time immemorial. Consider the inner meaning" },
-                new Quote { Id = 11, SamuraiId = 12, Text = "No matter how much you hate or how much you suffer, you can't bring the dead back to life" });
+                new Quote { Id = 11, SamuraiId = 5, Text = "Death is just another journey" },
+                new Quote { Id = 12, SamuraiId = 12, Text = "No matter how much you hate or how much you suffer, you can't bring the dead back to life" });
+
+            modelBuilder.Entity<Horse>().HasData(
+                new Horse { Id = 1, SamuraiId = 1, Name = "Barnaby", IsWarHorse = false, Age = 12 },
+                new Horse { Id = 2, SamuraiId = 1, Age = 5, IsWarHorse = false, Name = "Lacey", },
+                new Horse { Id = 3, SamuraiId = 1, Age = 5, IsWarHorse = true, Name = "Boeddika" },
+                new Horse { Id = 4, SamuraiId = 6, Age = 7, IsWarHorse = false, Name = "Lucky" },
+                new Horse { Id = 5, SamuraiId = 6, Age = 5, IsWarHorse = false, Name = "Little Joe" },
+                new Horse { Id = 7, SamuraiId = 11, Age = 7, IsWarHorse = false, Name = "Misty" },
+                new Horse { Id = 8, SamuraiId = 11, Age = 5, IsWarHorse = false, Name = "Rembrandt" },
+                new Horse { Id = 9, SamuraiId = 11, Age = 13, IsWarHorse = true, Name = "Traveler" });
         }
     }
 }

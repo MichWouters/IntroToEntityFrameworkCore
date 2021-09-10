@@ -17,9 +17,8 @@ namespace IntroToEF.Data.Entities
 
         public bool IsWarHorse { get; set; }
 
-        //horse belongs to one samurai
+        // A horse belongs to one samurai
         public Samurai Samurai { get; set; }
-
         public int SamuraiId { get; set; }
     }
 }

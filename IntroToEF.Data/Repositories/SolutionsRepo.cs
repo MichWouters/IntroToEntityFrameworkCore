@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IntroToEF.Data.Repositories
 {
-    public class SolutionsRepo: ISamuraiRepo
+    public class SolutionsRepo : ISamuraiRepo
     {
         private readonly SamuraiContext _context;
 
@@ -21,6 +21,18 @@ namespace IntroToEF.Data.Repositories
             Samurai samurai = GetSamurai(id);
             _context.Samurais.Remove(samurai);
             _context.SaveChanges();
+        }
+
+        public Samurai GetSamuraiWithoutHorses(int id)
+        {
+            return _context.Samurais.Find(id);
+        }
+
+        public Samurai GetSamuraiWithHorses(int id)
+        {
+            return _context.Samurais
+                .Include(x => x.Horses)
+                .SingleOrDefault(x => x.Id == id);
         }
 
         public List<Samurai> GetAllSamurai()
@@ -108,13 +120,25 @@ namespace IntroToEF.Data.Repositories
             _context.SaveChanges();
         }
 
+        public List<Samurai> SkipSamuraiThenTakeDescending(int amountToSkip, int amountToTake)
+        {
+            List<Samurai> samurais = _context.Samurais
+                    .OrderByDescending(x => x.Name)
+                    .Skip(amountToSkip)
+                    .Take(amountToTake)
+                    .ToList();
+
+            return samurais;
+        }
+
         public List<Samurai> FindSamuraisThatSaidAWord(string word)
         {
             // Using a find(id) does the exact same thing as below
             var samurais = _context.Samurais
-                .Include(x => x.Horses)
-                .Include(x => x.Quotes.Where(y => y.Text.Contains(word)))
-                .ToList();
+                .Include(x => x.Quotes
+                    .Where(quote => quote.Text.ToLower().Contains(word.ToLower()))).ToList()
+                .Where(x => x.Quotes.Any()).ToList();
+
 
             return samurais;
         }

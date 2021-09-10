@@ -27,6 +27,12 @@ namespace IntroToEF.Data.Repositories
 
         Samurai GetSamuraiWithAllRelatedData(int id);
 
+        Samurai GetSamuraiWithHorses(int id);
+
+        Samurai GetSamuraiWithoutHorses(int id);
+
+        List<Samurai> SkipSamuraiThenTakeDescending(int amountToSkip, int amountToTake);
+
         void UpdateSamurai(Samurai samurai);
 
         void UpdateSamurais();

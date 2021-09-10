@@ -1,5 +1,4 @@
-﻿using IntroToEF.Business;
-using IntroToEF.Data.Entities;
+﻿using IntroToEF.Data.Entities;
 using IntroToEF.Data.Repositories;
 using Moq;
 using NUnit.Framework;
@@ -9,7 +8,7 @@ namespace IntroToEf.Tests
 {
     public class SetExercisesTests
     {
-        private GetExercises exercises;
+        //private GetExercises exercises;
         private Mock<ISamuraiRepo> _repo;
 
         [SetUp]
@@ -18,9 +17,10 @@ namespace IntroToEf.Tests
             _repo = new Mock<ISamuraiRepo>();
             _repo.Setup(x => x.GetAllSamurai()).Returns(GetTestData());
 
-            exercises = new GetExercises(_repo.Object);
+            //exercises = new GetExercises(_repo.Object);
         }
 
+        // Mock database data zodat we onze tests kunnen runnen zonder de database te polluten met testdata.
         private List<Samurai> GetTestData()
         {
             return new List<Samurai>

@@ -15,10 +15,10 @@ namespace IntroToEF.Data.Entities
         public string Dynasty { get; set; }
 
         // One to many relationship -> A samurai can have 0,1 or more quotes
-        public List<Quote> Quotes { get; set; } = new List<Quote>();
+        public List<Quote> Quotes { get; set; }
 
-        public List<Horse> Horses { get; set; } = new List<Horse>();
+        public List<Horse> Horses { get; set; }
 
-        public List<Battle> Battles { get; set; } = new List<Battle>();
+        public List<Battle> Battles { get; set; }
     }
 }
