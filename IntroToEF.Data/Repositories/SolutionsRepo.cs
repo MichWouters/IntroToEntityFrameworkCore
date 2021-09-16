@@ -16,59 +16,6 @@ namespace IntroToEF.Data.Repositories
             _context = new SamuraiContext();
         }
 
-        public void DeleteSamurai(int id)
-        {
-            Samurai samurai = GetSamurai(id);
-            _context.Samurais.Remove(samurai);
-            _context.SaveChanges();
-        }
-
-        public Samurai GetSamuraiWithoutHorses(int id)
-        {
-            return _context.Samurais.Find(id);
-        }
-
-        public Samurai GetSamuraiWithHorses(int id)
-        {
-            return _context.Samurais
-                .Include(x => x.Horses)
-                .SingleOrDefault(x => x.Id == id);
-        }
-
-        public List<Samurai> GetAllSamurai()
-        {
-            return _context.Samurais.ToList();
-        }
-
-        public Samurai GetSamurai(int id)
-        {
-            return _context.Samurais.Find(id);
-        }
-
-        public Samurai GetSamuraiWithAllRelatedData(int id)
-        {
-            return _context.Samurais
-                    .Include(x => x.Horses)
-                    .Include(x => x.Battles)
-                    .Include(x => x.Quotes)
-                .SingleOrDefault(x => x.Id == id);
-        }
-
-        public Samurai GetSamuraiByName(string name)
-        {
-            return _context.Samurais.FirstOrDefault(x => x.Name == name);
-        }
-
-        public List<Samurai> GetSamuraiWhereNameContains(string text)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateSamurai(Samurai samurai)
-        {
-            throw new NotImplementedException();
-        }
-
         public void AddSamurai(Samurai samurai)
         {
             _context.Add(samurai);
@@ -81,6 +28,30 @@ namespace IntroToEF.Data.Repositories
             _context.SaveChanges();
         }
 
+        public void DeleteSamurai(int id)
+        {
+            Samurai samurai = GetSamurai(id);
+            _context.Samurais.RemoveRange(samurais);
+            _context.SaveChanges();
+        }
+
+        public List<Samurai> FindSamuraisThatSaidAWord(string word)
+        {
+            // Using a find(id) does the exact same thing as below
+            var samurais = _context.Samurais
+                .Include(x => x.Quotes
+                    .Where(quote => quote.Text.ToLower().Contains(word.ToLower()))).ToList()
+                .Where(x => x.Quotes.Any()).ToList();
+
+
+            return samurais;
+        }
+
+        public List<Samurai> GetAllSamurai()
+        {
+            return _context.Samurais.ToList();
+        }
+
         public List<Samurai> GetResultFromStoredProcedure(string text)
         {
             var samurais = _context.Samurais.FromSqlRaw(
@@ -88,6 +59,16 @@ namespace IntroToEF.Data.Repositories
                 .ToList();
 
             return samurais;
+        }
+
+        public Samurai GetSamurai(int id)
+        {
+            return _context.Samurais.Find(id);
+        }
+
+        public Samurai GetSamuraiByName(string name)
+        {
+            return _context.Samurais.FirstOrDefault(x => x.Name == name);
         }
 
         public List<Samurai> GetSamuraisByName(string name)
@@ -101,25 +82,31 @@ namespace IntroToEF.Data.Repositories
             return samurai;
         }
 
-        public void UpdateSamurais()
+        public List<Samurai> GetSamuraiWhereNameContains(string text)
         {
-            // Get samurais -> Skip the first four rows, then take three
-            List<Samurai> samurais = _context.Samurais
-                .Skip(1)
-                .Take(6)
-                .ToList();
-
-            int i = 0;
-            foreach (var samurai in samurais)
-            {
-                i++;
-                samurai.Name = "I was changed in DB " + i;
-                samurai.Dynasty = "Sengoku";
-            }
-
-            _context.SaveChanges();
+            throw new NotImplementedException();
         }
 
+        public Samurai GetSamuraiWithAllRelatedData(int id)
+        {
+            return _context.Samurais
+                    .Include(x => x.Horses)
+                    .Include(x => x.Battles)
+                    .Include(x => x.Quotes)
+                .SingleOrDefault(x => x.Id == id);
+        }
+
+        public Samurai GetSamuraiWithHorses(int id)
+        {
+            return _context.Samurais
+                .Include(x => x.Horses)
+                .SingleOrDefault(x => x.Id == id);
+        }
+
+        public Samurai GetSamuraiWithoutHorses(int id)
+        {
+            return _context.Samurais.Find(id);
+        }
         public List<Samurai> SkipSamuraiThenTakeDescending(int amountToSkip, int amountToTake)
         {
             List<Samurai> samurais = _context.Samurais
@@ -131,16 +118,34 @@ namespace IntroToEF.Data.Repositories
             return samurais;
         }
 
-        public List<Samurai> FindSamuraisThatSaidAWord(string word)
+        public void UpdateSamurai(Samurai samurai)
         {
-            // Using a find(id) does the exact same thing as below
-            var samurais = _context.Samurais
-                .Include(x => x.Quotes
-                    .Where(quote => quote.Text.ToLower().Contains(word.ToLower()))).ToList()
-                .Where(x => x.Quotes.Any()).ToList();
+            var context = new TestContext();
+            var author = new Author
+            {
+                AuthorId = 1,
+                FirstName = "William",
+                LastName = "Shakespeare"
+            };
+            author.Books.Add(new Book { BookId = 1, Title = "Othello" });
+            context.Attach(author);
+            context.Entry(author).Property("FirstName").IsModified = true;
+            context.SaveChanges();
+        }
+        public void UpdateSamurais()
+        {
+            // Get samurais -> Skip the first rows, then take 6
+            List<Samurai> samurais = _context.Samurais
+                .Skip(1).Take(6).ToList();
 
+            for (var i = 0; i < samurais.Count; i++)
+            {
+                var samurai = samurais[i];
+                samurai.Name = "I was changed in code " + i;
+                samurai.Dynasty = "Sengoku";
+            }
 
-            return samurais;
+            _context.SaveChanges();
         }
     }
 }

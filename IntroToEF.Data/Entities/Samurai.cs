@@ -14,6 +14,11 @@ namespace IntroToEF.Data.Entities
         [MaxLength(50)]
         public string Dynasty { get; set; }
 
+        // One to one relationship -> A samurai can have 0 or 1 spouses
+        public int SpouseId { get; set; }
+
+        public Spouse Spouse { get; set; }
+
         // One to many relationship -> A samurai can have 0,1 or more quotes
         public List<Quote> Quotes { get; set; }
 

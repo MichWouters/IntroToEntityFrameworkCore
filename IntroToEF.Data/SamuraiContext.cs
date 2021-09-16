@@ -1,5 +1,4 @@
-﻿using System;
-using IntroToEF.Data.Entities;
+﻿using IntroToEF.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace IntroToEF.Data
@@ -11,8 +10,12 @@ namespace IntroToEF.Data
         public DbSet<Quote> Quotes { get; set; }
 
         public DbSet<Samurai> Samurais { get; set; }
+
         public DbSet<Horse> Horses { get; set; }
+
         public DbSet<Battle> Battles { get; set; }
+
+        public DbSet<Spouse> Spouses { get; set; }
 
         private const string CONNECTION = @"Server=.\SQLEXPRESS;Database=SamuraiDB2;Trusted_Connection=True;";
 

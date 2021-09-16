@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using IntroToEF.Data.Entities;
 using IntroToEF.Data.Repositories;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace IntroToEf.Tests
 {
@@ -69,8 +68,8 @@ namespace IntroToEf.Tests
             // Arrange
             int amountToSkip = 3;
             int amountToTake = 5;
-            
-            // Act 
+
+            // Act
             List<Samurai> result = _repo.SkipSamuraiThenTakeDescending(amountToSkip, amountToTake);
 
             // Assert
@@ -86,7 +85,7 @@ namespace IntroToEf.Tests
             int amountToSkip = 13;
             int amountToTake = 5;
 
-            // Act 
+            // Act
             List<Samurai> result = _repo.SkipSamuraiThenTakeDescending(amountToSkip, amountToTake);
 
             // Assert
