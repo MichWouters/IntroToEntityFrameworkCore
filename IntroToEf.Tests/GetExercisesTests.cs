@@ -100,7 +100,7 @@ namespace IntroToEf.Tests
             string word = "death";
 
             // Act
-            List<Samurai> result = _repo.FindSamuraisThatSaidAWord(word);
+            IList<Samurai> result = _repo.FindSamuraisThatSaidAWord(word);
 
             // Assert
             Assert.AreEqual(2, result.Count);
@@ -116,8 +116,8 @@ namespace IntroToEf.Tests
             string lowercase = "death";
 
             // Act
-            List<Samurai> result = _repo.FindSamuraisThatSaidAWord(uppercase);
-            List<Samurai> result2 = _repo.FindSamuraisThatSaidAWord(lowercase);
+            IList<Samurai> result = _repo.FindSamuraisThatSaidAWord(uppercase);
+            IList<Samurai> result2 = _repo.FindSamuraisThatSaidAWord(lowercase);
 
             // Assert
             Assert.AreEqual(result2.Count, result.Count);

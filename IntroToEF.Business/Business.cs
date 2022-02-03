@@ -25,9 +25,9 @@ namespace IntroToEF.Business
             var SPResult = GetSamuraiWhoSaidAWord("thank");
         }
 
-        public List<Samurai> GetSamuraiWhoSaidAWord(string word)
+        public IList<Samurai> GetSamuraiWhoSaidAWord(string word)
         {
-           var result = _repo.GetResultFromStoredProcedure(word);
+            IList<Samurai> result = _repo.GetResultFromStoredProcedure(word);
             return result;
         }
 

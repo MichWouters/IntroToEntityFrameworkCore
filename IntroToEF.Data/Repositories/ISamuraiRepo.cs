@@ -11,19 +11,19 @@ namespace IntroToEF.Data.Repositories
 
         void DeleteSamurai(int id);
 
-        List<Samurai> FindSamuraisThatSaidAWord(string word);
+        IList<Samurai> FindSamuraisThatSaidAWord(string word);
 
-        List<Samurai> GetAllSamurai();
+        IList<Samurai> GetAllSamurai();
 
-        List<Samurai> GetResultFromStoredProcedure(string text);
+        IList<Samurai> GetResultFromStoredProcedure(string text);
 
         Samurai GetSamurai(int id);
 
         Samurai GetSamuraiByName(string name);
 
-        List<Samurai> GetSamuraisByName(string name);
+        IList<Samurai> GetSamuraisByName(string name);
 
-        List<Samurai> GetSamuraiWhereNameContains(string text);
+        IList<Samurai> GetSamuraiWhereNameContains(string text);
 
         Samurai GetSamuraiWithAllRelatedData(int id);
 

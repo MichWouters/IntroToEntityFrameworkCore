@@ -31,11 +31,11 @@ namespace IntroToEF.Data.Repositories
         public void DeleteSamurai(int id)
         {
             Samurai samurai = GetSamurai(id);
-            _context.Samurais.RemoveRange(samurais);
+            _context.Samurais.RemoveRange(samurai);
             _context.SaveChanges();
         }
 
-        public List<Samurai> FindSamuraisThatSaidAWord(string word)
+        public IList<Samurai> FindSamuraisThatSaidAWord(string word)
         {
             // Using a find(id) does the exact same thing as below
             var samurais = _context.Samurais
@@ -47,12 +47,12 @@ namespace IntroToEF.Data.Repositories
             return samurais;
         }
 
-        public List<Samurai> GetAllSamurai()
+        public IList<Samurai> GetAllSamurai()
         {
             return _context.Samurais.ToList();
         }
 
-        public List<Samurai> GetResultFromStoredProcedure(string text)
+        public IList<Samurai> GetResultFromStoredProcedure(string text)
         {
             var samurais = _context.Samurais.FromSqlRaw(
                     "EXEC [dbo].[SamuraisWhoSaidAWord] {0}", text)
@@ -71,7 +71,7 @@ namespace IntroToEF.Data.Repositories
             return _context.Samurais.FirstOrDefault(x => x.Name == name);
         }
 
-        public List<Samurai> GetSamuraisByName(string name)
+        public IList<Samurai> GetSamuraisByName(string name)
         {
             var samurai =
                 _context.Samurais
@@ -82,7 +82,7 @@ namespace IntroToEF.Data.Repositories
             return samurai;
         }
 
-        public List<Samurai> GetSamuraiWhereNameContains(string text)
+        public IList<Samurai> GetSamuraiWhereNameContains(string text)
         {
             throw new NotImplementedException();
         }
@@ -120,18 +120,10 @@ namespace IntroToEF.Data.Repositories
 
         public void UpdateSamurai(Samurai samurai)
         {
-            var context = new TestContext();
-            var author = new Author
-            {
-                AuthorId = 1,
-                FirstName = "William",
-                LastName = "Shakespeare"
-            };
-            author.Books.Add(new Book { BookId = 1, Title = "Othello" });
-            context.Attach(author);
-            context.Entry(author).Property("FirstName").IsModified = true;
-            context.SaveChanges();
+            _context.Update(samurai);
+            _context.SaveChanges();
         }
+
         public void UpdateSamurais()
         {
             // Get samurais -> Skip the first rows, then take 6

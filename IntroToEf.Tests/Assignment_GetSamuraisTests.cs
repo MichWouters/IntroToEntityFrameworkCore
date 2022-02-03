@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntroToEF.Business
+namespace IntroToEf.Tests
 {
-    class SetExercises
+    internal class Assignment_GetSamuraisTests
     {
     }
 }

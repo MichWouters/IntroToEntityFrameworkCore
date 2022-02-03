@@ -48,13 +48,13 @@ namespace IntroToEF.Data.Repositories
         /// Haal alle samurai op in de database, zonder gerelateerde data
         /// </summary>
         /// <returns></returns>
-        public List<Samurai> GetAllSamurai()
+        public IList<Samurai> GetAllSamurai()
         {
             // TODO
             throw new NotImplementedException();
         }
 
-        public List<Samurai> GetResultFromStoredProcedure(string text)
+        public IList<Samurai> GetResultFromStoredProcedure(string text)
         {
             // TODO
             throw new NotImplementedException();
@@ -106,7 +106,7 @@ namespace IntroToEF.Data.Repositories
         /// </summary>
         /// <param name="name">De naam van de samurai(s)</param>
         /// <returns></returns>
-        public List<Samurai> GetSamuraisByName(string name)
+        public IList<Samurai> GetSamuraisByName(string name)
         {
             // TODO
             throw new NotImplementedException();
@@ -118,7 +118,7 @@ namespace IntroToEF.Data.Repositories
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public List<Samurai> GetSamuraiWhereNameContains(string text)
+        public IList<Samurai> GetSamuraiWhereNameContains(string text)
         {
             // TODO
             throw new NotImplementedException();
@@ -161,13 +161,13 @@ namespace IntroToEF.Data.Repositories
         /// </summary>
         /// <param name="word">Een woord dat een samurai gezegd heeft</param>
         /// <returns>Een lijst van samurai met de quotes die een woord bevatten</returns>
-        public List<Samurai> FindSamuraisThatSaidAWord(string word)
+        public IList<Samurai> FindSamuraisThatSaidAWord(string word)
         {
             // TODO
             throw new NotImplementedException();
         }
 
-        public Samurai GetSamuraiWithHorses(int id)
+        public Samurai GetSamuraisWithMoreThan2Horses()
         {
             throw new NotImplementedException();
         }
