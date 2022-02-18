@@ -98,7 +98,7 @@ namespace IntroToEF.Data.Migrations
                             Id = 2,
                             Age = 5,
                             IsWarHorse = true,
-                            Name = "Jolly Jumper",
+                            Name = "Black Beauty",
                             SamuraiId = 1
                         },
                         new
@@ -106,7 +106,7 @@ namespace IntroToEF.Data.Migrations
                             Id = 3,
                             Age = 1,
                             IsWarHorse = true,
-                            Name = "Jolly Jumper",
+                            Name = "Vito",
                             SamuraiId = 2
                         },
                         new
@@ -114,7 +114,7 @@ namespace IntroToEF.Data.Migrations
                             Id = 4,
                             Age = 12,
                             IsWarHorse = false,
-                            Name = "Jolly Jumper",
+                            Name = "Kartoum",
                             SamuraiId = 5
                         },
                         new
@@ -122,7 +122,7 @@ namespace IntroToEF.Data.Migrations
                             Id = 5,
                             Age = 3,
                             IsWarHorse = false,
-                            Name = "Jolly Jumper",
+                            Name = "Fleetfoot",
                             SamuraiId = 12
                         });
                 });

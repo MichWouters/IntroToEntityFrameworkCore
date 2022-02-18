@@ -2,7 +2,7 @@
 
 namespace IntroToEF.Data.Migrations
 {
-    public partial class DataSeeding : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -118,6 +118,18 @@ namespace IntroToEF.Data.Migrations
                     { 10, "Edo", "Kido Takayoshi" },
                     { 11, "Edo", "Maeda Toshiie" },
                     { 12, "Kamakura", "Mori Okimoto" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Horses",
+                columns: new[] { "Id", "Age", "IsWarHorse", "Name", "SamuraiId" },
+                values: new object[,]
+                {
+                    { 1, 3, false, "Jolly Jumper", 1 },
+                    { 2, 5, true, "Black Beauty", 1 },
+                    { 3, 1, true, "Vito", 2 },
+                    { 4, 12, false, "Kartoum", 5 },
+                    { 5, 3, false, "Fleetfoot", 12 }
                 });
 
             migrationBuilder.InsertData(

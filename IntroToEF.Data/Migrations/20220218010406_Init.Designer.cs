@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IntroToEF.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    [Migration("20210907130042_DataSeeding")]
-    partial class DataSeeding
+    [Migration("20220218010406_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,6 +85,48 @@ namespace IntroToEF.Data.Migrations
                     b.HasIndex("SamuraiId");
 
                     b.ToTable("Horses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 3,
+                            IsWarHorse = false,
+                            Name = "Jolly Jumper",
+                            SamuraiId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Age = 5,
+                            IsWarHorse = true,
+                            Name = "Black Beauty",
+                            SamuraiId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Age = 1,
+                            IsWarHorse = true,
+                            Name = "Vito",
+                            SamuraiId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Age = 12,
+                            IsWarHorse = false,
+                            Name = "Kartoum",
+                            SamuraiId = 5
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Age = 3,
+                            IsWarHorse = false,
+                            Name = "Fleetfoot",
+                            SamuraiId = 12
+                        });
                 });
 
             modelBuilder.Entity("IntroToEF.Data.Entities.Quote", b =>
