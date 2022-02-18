@@ -50,6 +50,14 @@ namespace IntroToEF.Data
                 new Quote { Id = 9, SamuraiId = 7, Text = "It is the genius of life that demands of those who partake in it that they are not only are guardians of what was and is, but what will be" },
                 new Quote { Id = 10, SamuraiId = 10, Text = "The katana has been the weapon of the samurai since time immemorial. Consider the inner meaning" },
                 new Quote { Id = 11, SamuraiId = 12, Text = "No matter how much you hate or how much you suffer, you can't bring the dead back to life" });
+
+            modelBuilder.Entity<Horse>().HasData(
+                new Horse {Id = 1, SamuraiId = 1, Age = 3, IsWarHorse = false, Name = "Jolly Jumper"},
+                new Horse {Id = 2, SamuraiId = 1, Age = 5, IsWarHorse = true, Name = "Jolly Jumper"},
+                new Horse {Id = 3, SamuraiId = 2, Age = 1, IsWarHorse = true, Name = "Jolly Jumper"},
+                new Horse {Id = 4, SamuraiId = 5, Age = 12, IsWarHorse = false, Name = "Jolly Jumper"},
+                new Horse {Id = 5, SamuraiId = 12, Age = 3, IsWarHorse = false, Name = "Jolly Jumper"});
+
         }
     }
 }
